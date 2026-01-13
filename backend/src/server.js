@@ -31,7 +31,7 @@ initAuth({ app, db: mongoose });
 
 // health check
 app.get("/api/health", (req, res) => {
-  res.json({ status: "ok" });
+  res.json({ status: "ok yeah but new" });
 });
 
 const PORT = process.env.PORT || 3000;

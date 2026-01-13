@@ -11,7 +11,7 @@ export const initAuth = ({ app, db, options = {} }) => {
   // 🔑 bind model to backend mongoose
   User = createUserModel(db);
 
-  const prefix = options.routePrefix || "/auth";
+  const prefix = options.routePrefix || "/api/auth";
   app.use(prefix, authRoutes);
 };
 

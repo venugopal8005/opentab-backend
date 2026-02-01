@@ -31,14 +31,14 @@ export const register = async (req, res) => {
       email: user.email,
     });
     res.cookie("token", token, {
-      // httpOnly: true,
-      // secure: process.env.NODE_ENV === "production",
-      // sameSite: "none",
-      // maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: "lax",
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      // httpOnly: true,
+      // sameSite: "lax",
+      // secure: false,
+      // maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.status(201).json({
@@ -82,14 +82,14 @@ export const login = async (req, res) => {
     });
 
     res.cookie("token", token, {
-      // httpOnly: true,
-      // secure: process.env.NODE_ENV === "production",
-      // sameSite: "none",
-      // maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: "lax",
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      // httpOnly: true,
+      // sameSite: "lax",
+      // secure: false,
+      // maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     res.status(200).json({
       message: "Login successful",
@@ -131,14 +131,14 @@ export const refresh = (req, res) => {
     const newToken = generateToken({ id: decoded.id });
 
     res.cookie("token", newToken, {
-      // httpOnly: true,
-      // secure: process.env.NODE_ENV === "production",
-      // sameSite: "none",
-      // maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: "lax",
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      // httpOnly: true,
+      // sameSite: "lax",
+      // secure: false,
+      // maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.json({ message: "Token refreshed" });

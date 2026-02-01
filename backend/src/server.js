@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 // import cors from "cors";
 import { initAuth } from "auth-module";
 import "dotenv/config";
+import taskRouter from "../src/routes/task.routes.js"
 
 const app = express();
 
@@ -16,6 +17,8 @@ const app = express();
 // );
 app.use(express.json());
 app.use(cookieParser());
+app.use("/api/tasks", taskRouter);
+
 
 // db
 try {

@@ -21,7 +21,7 @@ export const register = async (req, res) => {
       return res.status(409).json({ message: "User already exists" });
     }
 
-    // 3. Create user (password hashes automatically) 
+    // 3. Create user (password hashes automatically)
     const user = await User.create({ email, password, displayName });
 
     // 4. Issue token
@@ -31,9 +31,13 @@ export const register = async (req, res) => {
       email: user.email,
     });
     res.cookie("token", token, {
+      // httpOnly: true,
+      // secure: process.env.NODE_ENV === "production",
+      // sameSite: "none",
+      // maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
+      sameSite: "lax",
+      secure: false,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -78,9 +82,13 @@ export const login = async (req, res) => {
     });
 
     res.cookie("token", token, {
+      // httpOnly: true,
+      // secure: process.env.NODE_ENV === "production",
+      // sameSite: "none",
+      // maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
+      sameSite: "lax",
+      secure: false,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     res.status(200).json({
@@ -123,9 +131,13 @@ export const refresh = (req, res) => {
     const newToken = generateToken({ id: decoded.id });
 
     res.cookie("token", newToken, {
+      // httpOnly: true,
+      // secure: process.env.NODE_ENV === "production",
+      // sameSite: "none",
+      // maxAge: 7 * 24 * 60 * 60 * 1000,
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
+      sameSite: "lax",
+      secure: false,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 

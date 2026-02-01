@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 export const protect = (req, res, next) => {
   console.log("Auth middleware called");
   const token = req.cookies?.token;
-
+//  console.log(token);
   if (!token) {
     console.log("No token provided");
     return res.status(401).json({ message: "Not authenticated" });
@@ -14,7 +14,7 @@ export const protect = (req, res, next) => {
     console.log("Token verified successfully");
     req.user = decoded;
     next();
-  } catch {
+  } catch { 
     console.log("Token verification failed");
     return res.status(401).json({ message: "Invalid token" });
   }

@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
-// import cors from "cors";
+import cors from "cors";
 import { initAuth } from "auth-module";
 import "dotenv/config";
 import taskRouter from "../src/routes/task.routes.js"

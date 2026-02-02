@@ -4,12 +4,12 @@ export const updateTask = async (req, res) => {
   try {
     console.log(req.body);
     console.log("Task reached for update");
-    const { taskId, subtasks, ...rest } = req.body;
+    const { _id, subtasks, ...rest } = req.body;
     const normalizedSubtasks = (subtasks || []).map((s) =>
       typeof s === "string" ? { title: s } : s,
     );
     const task = await Task.findOneAndUpdate(
-      { taskId },
+      { _id  },
       { $set: { ...rest, subtasks: normalizedSubtasks } },
       { new: true, runValidators: true },
     );
